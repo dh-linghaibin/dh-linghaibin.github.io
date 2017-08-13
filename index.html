@@ -203,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -213,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -285,7 +285,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-13T04:58:32+08:00">
                 2017-08-13
@@ -324,7 +324,220 @@
       
         
           
-            
+            <h1 id="代码大全阅读记录"><a href="#代码大全阅读记录" class="headerlink" title="代码大全阅读记录"></a>代码大全阅读记录</h1><ul>
+<li>最小复杂度</li>
+</ul>
+<blockquote>
+<p>避免做出  聪明的设计，难以理解 易于理解简单的设计</p>
+</blockquote>
+<ul>
+<li>易于维护</li>
+</ul>
+<blockquote>
+<p>提高代码质量</p>
+</blockquote>
+<ul>
+<li>松散耦合</li>
+</ul>
+<blockquote>
+<p>通过应用类型的合理抽象，封装 信息影藏 设计出现关联少的类</p>
+</blockquote>
+<ul>
+<li>可扩展性</li>
+</ul>
+<blockquote>
+<p>在增强系统的功能时 无须破坏 底层结构 改动系统的某一部分 不会影响到其他部分</p>
+</blockquote>
+<ul>
+<li>可重用性</li>
+</ul>
+<blockquote>
+<p>设计的系统组成部分 可以在其他系统中使用 使用代价小</p>
+</blockquote>
+<ul>
+<li>高扇入</li>
+</ul>
+<blockquote>
+<p>大量的类使用摸个给定的类 利用 较低层次上的工具类‘’</p>
+</blockquote>
+<ul>
+<li>低扇出</li>
+</ul>
+<blockquote>
+<p>类里少量 或 适中的使用 其他的类  高扇出（超过约7个）说明一个类大量的使用了其他的类 会使系统变得过于复杂 低扇出的原则都是有益的</p>
+</blockquote>
+<ul>
+<li>可移植性</li>
+</ul>
+<blockquote>
+<p>方便移植到其他环境中去</p>
+</blockquote>
+<ul>
+<li>精简性</li>
+</ul>
+<blockquote>
+<p>设计出的系统没有多余的部分 </p>
+</blockquote>
+<ul>
+<li>层次性</li>
+</ul>
+<blockquote>
+<p>尽量保持各个系统各个分阶层的层次性，设计出的系统应该可以在任意层次上观察而不需要进入其他层次</p>
+</blockquote>
+<ul>
+<li>标准技术</li>
+</ul>
+<blockquote>
+<p>依赖的外来的 古怪的东西越多 理解越是头疼 要用标准话 常用的方法 让整个系统给人一种熟悉的感觉</p>
+</blockquote>
+<hr>
+<h3 id="系统层次"><a href="#系统层次" class="headerlink" title="系统层次"></a>系统层次</h3><ul>
+<li>不同子系统之间相互通讯的规则</li>
+</ul>
+<blockquote>
+<p>所有的子系统都能与其他子系统通讯 完全失去了把他们分开所带来的好处 应该限制所有的子系统之间的通讯来让每个子系统更有存在意义</p>
+<blockquote>
+<p>在没有任何规则时，热力学第二定律就会发生作用，整个系统的熵将会增加，如果不对系统间的通信石佳任何限制，那么它们之间的通信就会肆意发生</p>
+<blockquote>
+<p>只有当‘确需了解’–最好还有合理的理由时，才应该允许子系统之间的通信。如果你还拿不准的话,那么就应该先对子系统之间的通讯加以限制，等日后需要再开放</p>
+<blockquote>
+<p>为了让系统之间连接简单一动且易于维护，就尽量简化子系统之间的交互关系。最简单的交互关是让一个子系统中包含另一个子系统中的类；而最复杂的的交互关系是让一个子系统中的类继承子另一个子系统的类。</p>
+<blockquote>
+<p>A类 -  B类  B类 - C类  C类 - A类  —大忌</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>常见的子系统</li>
+</ul>
+<blockquote>
+<ul>
+<li>子系统会在系统中反复出现</li>
+</ul>
+<blockquote>
+<ul>
+<li>业务规则</li>
+</ul>
+<blockquote>
+<p>在计算机的法律 规则 政策 以及 过程  比如税率 节假日安排</p>
+</blockquote>
+<ul>
+<li>用户界面</li>
+</ul>
+<blockquote>
+<p>把用户界面和其他部分隔离开，以便用户界面的演化不会破坏程序的其余部分 Most situation 用户界面会使用多个附属子系统或类来处理用户界面，命令行接口，菜单操作，窗体管理，帮助系统。。</p>
+</blockquote>
+<ul>
+<li>数据库访问</li>
+</ul>
+<blockquote>
+<p>把对数据库访问的实时细节隐藏起来，让程序不用关系绝大部分可以不必关系的底层处理细节， 提供有价值的的抽象层，从而减少程序的复杂度， 发生错误时，无须修改程序的主要部分</p>
+</blockquote>
+<ul>
+<li>对系统的依赖性</li>
+</ul>
+<blockquote>
+<p>把对操作系统的依赖因素归到一个子系统里，就如同把对硬件的依赖封装起来一样。 比如开发一个window系统，不要局限于window环境，把对window相关的系统调用都隔离起来，放到一个window接口系统中</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>分解为类</li>
+</ul>
+<blockquote>
+<ul>
+<li>类与对象的比较</li>
+</ul>
+<blockquote>
+<p>核心 对象与类的区分 对象是指运行期间在程序中实际存在的的具体实体，而类是指在程序源码中存在的静态事物。对象是动态的 在运行期间 所能得到的值和属性</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>分解成子程序</li>
+</ul>
+<blockquote>
+<p>把每个类细分为子程序 3层定义出类接口 4层的设计将细化出类的私用子程序</p>
+<p>完成的定义出类内部的子程序，常常会有助于跟好的里i接类的接口，反过来，这又有助于对类的接口进行精伊布的修改</p>
+</blockquote>
+<ul>
+<li>子程序内部的设计</li>
+</ul>
+<blockquote>
+<p>为每个子程序不止详细的功能，子程序的实际工作通常是由负责该子程序的开发人员完成， 包括 伪代码 选择算法 组织子程序内部的代码块</p>
+</blockquote>
+<p>124 page</p>
+<hr>
+<h3 id="表驱动法"><a href="#表驱动法" class="headerlink" title="表驱动法"></a>表驱动法</h3><ol>
+<li>表驱动使用总则</li>
+<li>直接访问表</li>
+<li>索引访问表</li>
+<li>阶梯访问表</li>
+<li>表查询的其他事例</li>
+<li>用决策表代替复杂的逻辑</li>
+<li>用查询表代替复杂表达式</li>
+</ol>
+<h4 id="表驱动发使用总则"><a href="#表驱动发使用总则" class="headerlink" title="表驱动发使用总则"></a>表驱动发使用总则</h4><ul>
+<li>把字符划分成 字母 标点 数字 三类</li>
+<li>使用表驱动法的两个问题</li>
+</ul>
+<blockquote>
+<ol>
+<li>怎样从表中查询条目，可以用一些数据表来直接访问表。 比如说 你希望把数据按月进行分类，那么创建一个月份表是非常好的 你可以用一个下标1到12的数组实现</li>
+<li>很难用于直接查表，例如 你希望按照社会安全号码做数据分类，那么除非可以承受表里存放99999999条数据，否则不能直接用号码查表，你会用更为复杂的方法</li>
+</ol>
+<blockquote>
+<ul>
+<li>直接访问</li>
+<li>索引访问</li>
+<li>阶梯访问</li>
+</ul>
+</blockquote>
+<ul>
+<li>表里存放的输出结果 如果是数据就存放数据 如果是动作 表查询出来的就是动作，在这种情况下，你可以保存一个描述改动作的代码 在有些语言里 你可以保存对实现该动作的子程序的引用。无论哪种情况，表都会变得更为复杂</li>
+</ul>
+</blockquote>
+<ul>
+<li>直接访问表</li>
+</ul>
+<blockquote>
+<p>直接访问表代替了更为复杂的逻辑控制结构，无须绕很多发扎的的圈子就可以在表里面找到你想要的信息</p>
+<blockquote>
+<ul>
+<li>事例：一个月中的天数</li>
+</ul>
+<blockquote>
+<ul>
+<li>笨做法就是写一个大的if语句</li>
+</ul>
+<blockquote>
+<if else="">
+
+</if></blockquote>
+<ul>
+<li>实现同样功能 更简单 更容易修改的是将数据存到一张表里</li>
+</ul>
+<blockquote>
+<p>u8 integer  = {31,31,29….};</p>
+<p>days = integer[ month-1 ]</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>灵活的消息格式</li>
+</ul>
+<blockquote>
+<p>打印一分存储在文件中的消息，大约500条消息，每份文件大约20种不同的消息，这些消息中会存有大约20种不同的消息。这些消息源自与一些浮标， 每条消息都有一个消息头，其中有一个ID 高速你这些消息是如何存储的</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>构造查询键值</li>
+</ul>
+</blockquote>
+<ul>
+<li>索引访问表</li>
+</ul>
+
           
         
       
@@ -396,7 +609,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-04T22:35:57+08:00">
                 2017-07-04
@@ -516,7 +729,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-04T08:09:41+08:00">
                 2017-07-04
@@ -636,7 +849,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -701,7 +914,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
