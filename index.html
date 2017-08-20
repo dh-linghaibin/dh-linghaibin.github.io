@@ -276,6 +276,219 @@
   
 
   <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/coos-手册阅读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="linghaibin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="linghaibin-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/19/coos-手册阅读/" itemprop="url">coos 手册阅读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T02:07:41+08:00">
+                2017-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="coos-手册-阅读"><a href="#coos-手册-阅读" class="headerlink" title="coos 手册 阅读"></a>coos 手册 阅读</h1><ol>
+<li><p>删除任务 </p>
+<blockquote>
+<p>CoExitTask();    //删除自己</p>
+<p>CoDelTask (taskID)  //删除其他任务</p>
+<blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; void  myTask0 (void* pdata)</div><div class="line">&gt; &gt; &#123;</div><div class="line">&gt; &gt; 	CoExitTask();</div><div class="line">&gt; &gt; &#125;</div><div class="line">&gt; &gt; void  myTask1 (void* pdata)</div><div class="line">&gt; &gt; &#123;</div><div class="line">&gt; &gt; 	CoDelTask(taskID);</div><div class="line">&gt; &gt; &#125;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+</li>
+<li><p>任务状态</p>
+<blockquote>
+<p>TASK_READY  就绪任务  创建好 但是没有运行</p>
+<p>TASK_RUNNING  任务在执行 占用CPU</p>
+<p>TASK_WAITING   等待状态 等待一个事件的发生</p>
+<p>TASK_DORMANT  静止状态  当一个任务被删除时的状态 用户不会被激活</p>
+<blockquote>
+<p>任务可以在这四个状态之间被更改  </p>
+<p>CoSuspendTask()  转换任务的运行状态或准备状态 和 等待状态 </p>
+<p>CoAwakeTask()  切换任务从等待状态到就绪状态</p>
+<p><img src="C:\Users\a6735\Documents\er.png" alt="er"></p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>任务控制块</p>
+<blockquote>
+<p>用于描述一个任务</p>
+<blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; <span class="number">12</span></div><div class="line">&gt; &gt; <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TCB</span></span></div><div class="line">&gt; &gt; &#123;</div><div class="line">&gt; &gt; OS_STK *stkPtr; <span class="comment">/*!&lt; The current point of task. */</span></div><div class="line">&gt; &gt; U8 prio; <span class="comment">/*!&lt; Task priority. */</span></div><div class="line">&gt; &gt; U8 state; <span class="comment">/*!&lt; TaSk status. */</span></div><div class="line">&gt; &gt; OS_TID taskID; <span class="comment">/*!&lt; Task ID. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_MUTEX_EN &gt; 0</span></div><div class="line">&gt; &gt; OS_MutexID mutexID; <span class="comment">/*!&lt; Mutex ID. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_EVENT_EN &gt; 0</span></div><div class="line">&gt; &gt; OS_EventID eventID; <span class="comment">/*!&lt; Event ID. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_ROBIN_EN &gt;0</span></div><div class="line">&gt; &gt; U16 timeSlice; <span class="comment">/*!&lt; Task time slice */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_STK_CHECKOUT_EN &gt;0</span></div><div class="line">&gt; &gt; OS_STK *<span class="built_in">stack</span>; <span class="comment">/*!&lt; The top point of task. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_EVENT_EN &gt; 0</span></div><div class="line">&gt; &gt; <span class="keyword">void</span>* pmail; <span class="comment">/*!&lt; Mail to task. */</span></div><div class="line">&gt; &gt; <span class="class"><span class="keyword">struct</span> <span class="title">TCB</span> *<span class="title">waitNext</span>;</span> <span class="comment">/*!&lt; Point to next TCB in the Event waitting list.*/</span></div><div class="line">&gt; &gt; <span class="class"><span class="keyword">struct</span> <span class="title">TCB</span> *<span class="title">waitPrev</span>;</span> <span class="comment">/*!&lt; Point to prev TCB in the Event waitting list.*/</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_TASK_SCHEDULE_EN == 0</span></div><div class="line">&gt; &gt;    FUNCPtr      taskFuc;</div><div class="line">&gt; &gt;    OS_STK     *taskStk;</div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_FLAG_EN &gt; 0</span></div><div class="line">&gt; &gt; <span class="keyword">void</span>* pnode; <span class="comment">/*!&lt; Pointer to node of event flag. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">if</span> CFG_TASK_WAITTING_EN &gt;0</span></div><div class="line">&gt; &gt; U32 delayTick; <span class="comment">/*!&lt; The number of ticks which delay. */</span></div><div class="line">&gt; &gt; <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&gt; &gt; <span class="class"><span class="keyword">struct</span> <span class="title">TCB</span> *<span class="title">TCBnext</span>;</span> <span class="comment">/*!&lt; The pointer to next TCB. */</span></div><div class="line">&gt; &gt; <span class="class"><span class="keyword">struct</span> <span class="title">TCB</span> *<span class="title">TCBprev</span>;</span> <span class="comment">/*!&lt; The pointer to prev TCB. */</span></div><div class="line">&gt; &gt; &#125;OSTCB,*P_OSTCB;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<blockquote>
+<p>stkPtr :指向当前任务堆栈顶部的指针。coocox库斯允许每个任务有自己的堆栈的大小。在每一个任务切换，库斯保存当前CPU通过栈的运行状态，stkptr指出这样的任务可以回到以前的状态时，CPU运行一次。由于Cortex-M3有16个32位通用寄存器描述CPU的状态，一个任务的最小堆的大小是68字节（4字节用于检测堆栈溢出）</p>
+<p>prio:  您分配的任务优先级。多个任务可以在coocox库斯相同的优先级份额</p>
+<p>state: 任务当前的状态</p>
+<p>taskID:  系统分配的任务ID，由于多个任务可以共享相同的优先级，所以优先级不能用作唯一标识符。我们使用任务ID来区分不同的任务coocox库斯。</p>
+<p>mutexID:  任务等待的互斥ID</p>
+<p>eventID ：任务等待的事件ID</p>
+<p>timeSlice: 任务的时间片</p>
+<p>Stack: 一个指针指向栈底。它可以用来检查堆栈溢出</p>
+<p>Pmail: The message pointer sent to the task.</p>
+<p>waitNext: 下一个任务的事件在等待TCB</p>
+<p>waitPrev: 以往的任务事件等待TCB</p>
+<p>taskFuc：任务函数指针，指向活动任务</p>
+<p>taskStk 指向当前任务堆栈顶部的指针，指向活动任务。</p>
+<p>Pnode: 指向事件标志节点的指针</p>
+<p>delayTick: 前延迟事件与任务处于延迟状态时的时间差</p>
+<p>TCBnext: 下一个TCB当任务在就绪列表/延迟/互斥等待名单列表。列出的任务属于由任务状态和TCB的项目确定。如果当前任务处于就绪状态，则处于就绪列表中。如果是在等待状态，由mutexid和delaytick然后判断：如果mutexid不0xffffffff，它是在互斥等待名单；如果delaytick不0xffffffff，它是在延迟列表</p>
+<p>TCBprev: 以前的TCB当任务在就绪列表/延迟/互斥等待名单列表。任务所属的列表由任务状态和相关事件标志决定。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li><p>临界状态  -中断？</p>
+<blockquote>
+<p>不同于其他的内核，coocox库斯不关中断处理的关键代码段，但锁调度。因此，库斯有更短的时延中断与别人比较。由于启用中断的时间与系统对实时事件的响应有关，所以它是实时内核开发人员提供的最重要的因素之一。与其他方法相比，通过锁定调度器，可以最大程度地提高系统的实时性。因为coocox库斯管理关键部分禁止任务调度，用户的应用程序不能调用API函数将挂起当前正在执行的任务的关键部分</p>
+<p>CoExitTask (), CoSuspendTask<br>(), CoTickDelay (), CoTimeDelay (), CoEnterMutexSection (), CoPendSem (),<br>CoPendMail (), CoPendQueueMail (), CoWaitForSingleFlag (),<br>CoWaitForMultipleFlags () </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; void Task1(void* pdata)</div><div class="line">&gt; &#123;</div><div class="line">&gt;   .....................</div><div class="line">&gt;   CoSchedLock(); // Enter Critical Section</div><div class="line">&gt;   ...............                    // Critical Code</div><div class="line">&gt;   CoSchedUnlock();   // Exit Critical Section</div><div class="line">&gt;   .....................</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>中断</p>
+<blockquote>
+<p>在coocox库斯，中断分为两大类，根据是否调用系统API函数内部或不。对于ISR无关的操作系统，coocox库斯不强迫它做任何事情，你可以像没有一个操作系统。然而，对于ISR调用系统API函数里面，coocox库斯要求你调用相关的函数时，进入或退出中断</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; void  WWDG_IRQHandler(void)</div><div class="line">&gt; &#123;</div><div class="line">&gt; CoEnterISR(); // Enter the interrupt</div><div class="line">&gt; isr_SetFlag(flagID);      // API function</div><div class="line">&gt; ..................;            // Interrupt service routine</div><div class="line">&gt; CoExitISR(); // Exit the interrupt</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>所有的系统API，可以称为中断服务程序开始isr_，如isr_postsem（），isr_postmail（），（）和（）isr_postqueuemail isr_setflag。任何其他API在ISR调用会导致系统混乱。当调用中断服务例程中相应的API函数时，系统需要确定任务调度是否锁定。如果解锁，系统可以正常调用它。否则，系统将向服务请求列表发送相关的服务请求，然后等待调度程序的解锁来响应它。</p>
+</blockquote>
+</li>
+<li><p>任务同步</p>
+<blockquote>
+<p>任务间的同步是指一个任务只能继续执行后得到另一个任务或中断服务程序发送同步信号。有信号，在coocox库斯实现进程间同步互斥和旗帜。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&gt; ID0 = CoCreateSem(0,1,EVENT_SORT_TYPE_FIFO); // initCnt=0,maxCnt=1,FIFO</div><div class="line">&gt; ID1 = CoCreateSem(2,5,EVENT_SORT_TYPE_PRIO); // initCnt=2,maxCnt=5,PRIO</div><div class="line">&gt; void myTaskA(void* pdata)</div><div class="line">&gt; &#123;</div><div class="line">&gt;   ..........</div><div class="line">&gt;   semID = CoCreateSem(0,1,EVENT_SORT_TYPE_FIFO);</div><div class="line">&gt;   CoPendSem(semID,0);</div><div class="line">&gt;   ..........</div><div class="line">&gt; &#125;</div><div class="line">&gt; void myTaskB(void* pdata)</div><div class="line">&gt; &#123;</div><div class="line">&gt;   ......</div><div class="line">&gt;   CoPostSem(semID);</div><div class="line">&gt;   ......</div><div class="line">&gt; &#125;</div><div class="line">&gt; void myISR(void)</div><div class="line">&gt; &#123;</div><div class="line">&gt;   CoEnterISR();</div><div class="line">&gt;   ......</div><div class="line">&gt;   isr_PostSem(semID);</div><div class="line">&gt;   CoExitISR();</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>​</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/stm32-寄存器配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1194,7 +1407,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1205,7 +1418,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
