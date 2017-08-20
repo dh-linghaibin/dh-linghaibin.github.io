@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="不要停止阅读">
+<meta name="description" content="#编程的核心是数据结构，而不是算法  数据是易变的，逻辑是稳定的  函数表驱动法12345678910111213141516171819202122231 typedef struct&amp;#123; 2     DOUBLE  aRangeLimit; 3     CHAR    *pszGrade; 4 &amp;#125;T_GRADE_MAP; 5  6 T_GRADE_MAP gGradeMap[">
 <meta name="keywords" content="C技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编程的核心">
 <meta property="og:url" content="http://yoursite.com/2017/08/19/编程的核心/index.html">
 <meta property="og:site_name" content="linghaibin-Blog">
-<meta property="og:description" content="不要停止阅读">
-<meta property="og:updated_time" content="2017-08-20T08:25:59.190Z">
+<meta property="og:description" content="#编程的核心是数据结构，而不是算法  数据是易变的，逻辑是稳定的  函数表驱动法12345678910111213141516171819202122231 typedef struct&amp;#123; 2     DOUBLE  aRangeLimit; 3     CHAR    *pszGrade; 4 &amp;#125;T_GRADE_MAP; 5  6 T_GRADE_MAP gGradeMap[">
+<meta property="og:updated_time" content="2017-08-20T08:39:29.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编程的核心">
-<meta name="twitter:description" content="不要停止阅读">
+<meta name="twitter:description" content="#编程的核心是数据结构，而不是算法  数据是易变的，逻辑是稳定的  函数表驱动法12345678910111213141516171819202122231 typedef struct&amp;#123; 2     DOUBLE  aRangeLimit; 3     CHAR    *pszGrade; 4 &amp;#125;T_GRADE_MAP; 5  6 T_GRADE_MAP gGradeMap[">
 
 
 
@@ -360,7 +360,11 @@
       
 
       
-        
+        <p>#编程的核心是数据结构，而不是算法</p>
+<blockquote>
+<p>数据是易变的，逻辑是稳定的</p>
+</blockquote>
+<h1 id="函数表驱动法"><a href="#函数表驱动法" class="headerlink" title="函数表驱动法"></a>函数表驱动法</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></div><div class="line"> <span class="number">2</span>     DOUBLE  aRangeLimit;</div><div class="line"> <span class="number">3</span>     CHAR    *pszGrade;</div><div class="line"> <span class="number">4</span> &#125;T_GRADE_MAP;</div><div class="line"> <span class="number">5</span> </div><div class="line"> <span class="number">6</span> T_GRADE_MAP gGradeMap[MAX_GRADE_LEVEL] = &#123;</div><div class="line"> <span class="number">7</span>     &#123;<span class="number">50.0</span>,              <span class="string">"Fail"</span>&#125;,</div><div class="line"> <span class="number">8</span>     &#123;<span class="number">60.0</span>,              <span class="string">"Pass"</span>&#125;,</div><div class="line"> <span class="number">9</span>     &#123;<span class="number">70.0</span>,              <span class="string">"Credit"</span>&#125;,</div><div class="line"><span class="number">10</span>     &#123;<span class="number">80.0</span>,              <span class="string">"Distinction"</span>&#125;,</div><div class="line"><span class="number">11</span>     &#123;<span class="number">100.0</span>,             <span class="string">"High Distinction"</span>&#125;</div><div class="line"><span class="number">12</span> &#125;;</div><div class="line"><span class="number">13</span> </div><div class="line"><span class="number">14</span> <span class="function"><span class="keyword">static</span> CHAR* <span class="title">EvaluateGrade</span><span class="params">(DOUBLE dScore)</span></span></div><div class="line">15 &#123;</div><div class="line"><span class="number">16</span>     INT8U ucLevel = <span class="number">0</span>;</div><div class="line"><span class="number">17</span>     <span class="keyword">for</span>(; ucLevel &lt; MAX_GRADE_LEVEL; ucLevel++)</div><div class="line"><span class="number">18</span>     &#123;</div><div class="line"><span class="number">19</span>         <span class="keyword">if</span>(dScore &lt; gGradeMap[ucLevel].aRangeLimit)</div><div class="line"><span class="number">20</span>             <span class="keyword">return</span> gGradeMap[ucLevel].pszGrade;</div><div class="line"><span class="number">21</span>     &#125;</div><div class="line"><span class="number">22</span>     <span class="keyword">return</span> gGradeMap[<span class="number">0</span>].pszGrade;</div><div class="line"><span class="number">23</span> &#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -453,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -527,6 +540,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数表驱动法"><span class="nav-number">1.</span> <span class="nav-text">函数表驱动法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
